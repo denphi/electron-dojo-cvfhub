@@ -1,5 +1,0 @@
-dist
-electron
-node_modules
-src/dojo
-src/resources/**/*.css

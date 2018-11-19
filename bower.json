@@ -1,6 +1,0 @@
-{
-	"name": "electron-dojo-cvfhub",
-	"dependencies": {
-		"dojo": "~1.10.4"
-	}
-}
