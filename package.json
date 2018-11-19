@@ -1,0 +1,13 @@
+{
+	"name": "electron-dojo-cvfhub",
+	"version": "0.0.1",
+	"devDependencies": {
+		"electron-download": "~1.4.1",
+		"electron-packager": "5.2.0",
+		"extract-zip": "~1.4.1",
+		"grunt": "~0.4.5",
+		"grunt-contrib-clean": "~0.7.0",
+		"grunt-contrib-stylus": "~0.22.0",
+		"grunt-contrib-watch": "~0.6.1"
+	}
+}
