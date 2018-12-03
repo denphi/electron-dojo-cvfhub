@@ -1,0 +1,151 @@
+* {
+	outline: none !important;
+}
+html, body {
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+#appLayout {
+	height: 100%;
+}
+#leftCol {
+	width: 14em;
+}
+
+.claro .demoLayout .edgePanel{
+	background-color: #d0e9fc;
+}
+
+#viewsChart {
+	width: 550px;
+	height: 550px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Lucida Sans,Lucida Grande,Arial !important;
+	font-size: 13px !important;
+	background: white;
+	color: #333;
+}
+
+button {
+	-webkit-transition: background-color 0.2s linear;
+	border-radius:4px;
+	-moz-border-radius: 4px 4px 4px 4px;
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+	background-color: #E4F2FF;
+	background-image: url("//ajax.googleapis.com/ajax/libs/dojo/1.7.4/dijit/themes/claro/form/images/button.png");
+	background-position: center top;
+	background-repeat: repeat-x;
+	border: 1px solid #769DC0;
+	padding: 2px 8px 4px;
+	font-size:1em;
+}
+
+button:hover {
+	background-color: #AFD9FF;
+	color: #000000;
+}
+
+h1 {
+	font-size:1.5em;
+}
+
+.break
+{
+	float:none;
+	clear:both;
+}
+.errorDialog{
+	width: 300px
+}
+
+.errorDialog .dijitDialogTitleBar {
+    background-color: #d7191c !important;
+}
+
+.loginDialog .dijitDialogCloseIcon {
+    display : none;
+}
+
+.claro .dijitTabContainerTabListNested{
+	width : 130px
+}
+
+.dijitCircle  {
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	display: inline-block;
+	background-image: none;
+}
+
+.dijitL0  {
+	background-color: #bbbbbb;
+}
+
+.dijitL1  {
+	background-color: #d7191c;
+}
+
+.dijitL2  {
+	background-color: #fdae61;
+}
+
+.dijitL3  {
+	background-color: #ffffbf;
+}
+
+.dijitL4  {
+	background-color: #a6d96a;
+}
+
+.dijitL5  {
+	background-color: #1a9641;
+}
+
+
+.claroError {
+   	background-color: #1a9641;    
+}
+
+
+pre.log                         {font-family:"Lucida Console",monospace;font-size:12px;line-height:1.1em;margin-left:2px;padding-left:0}
+.log_error                      {color:red;}
+.log_warn                       {color:tomato;}
+.log_info                       {color:black;}
+.log_stderr                     {color:red;}
+.log_debug                      {color:darkgreen;}
+.log_debug2                     {color:#408040;}
+.log_debug3                     {color:#808080;}
+.log_debug4                     {color:#8080FF;}
+.log_debug5                     {color:#8080FF;}
+.log_debug6                     {color:#8080FF;}
+.log_debug7                     {color:#8080FF;}
+.log_debug8                     {color:#8080FF;}
+.log_debug9                     {color:#a0a0a0;}
+
+
+.pageOverlay {
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1001;
+    display: block;
+}
+
+#loadingOverlay {
+    background:  #fff url('https://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/claro/images/loadingAnimation.gif') no-repeat 10px 23px;
+}
+
+.loadingMessage {
+    padding: 25px 40px;
+    color: #999;
+}

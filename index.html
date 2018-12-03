@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CvfHub Virtual lab prototype</title>
+	<link rel="stylesheet" href="assets/style.css" media="screen">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dijit/themes/claro/claro.css" media="screen">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojox/grid/resources/claroGrid.css" />
+</head>
+<body class="claro">
+<div id="appLayout" class="demoLayout"></div>
+<script>
+var dojoConfig = (function(){
+	return {
+		async: true,
+		//in case you wanted to use your own library
+	};
+})();  
+
+var elerem = require('electron').remote;
+var dialog = elerem.dialog;
+var app = elerem.app;
+var http = require('http');
+var fs = require('fs');
+var path = require('path');
+var request = require('request');
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js"></script> 
+<script src="index.js"></script>
+</body>
+<div id="loadingOverlay" class="loadingOverlay pageOverlay">
+	<div class="loadingMessage">Loading...</div>
+</div>
+</html>
