@@ -8,6 +8,7 @@ define([
 	"dojo/_base/array",
 	"dojo/dom",
 	"dojo/dom-style",
+	"./app/AppConfig.js",
 	"./app/TreePane.js",
 	"./app/LoginDialog.js",
 	"./app/LoginController.js",
@@ -23,6 +24,7 @@ define([
 	array,
 	dom,
 	domStyle,
+	AppConfig,
 	TreePane,
 	LoginDialog, 
 	LoginController,
@@ -39,7 +41,9 @@ define([
 		jobschedulerId : undefined,		
         constructor: function(/*Object*/ kwArgs) {			
             lang.mixin(this, kwArgs);
-			this.jobschedulerId = "DESKTOP-8UDIT28_40444"
+			this.jobschedulerId = AppConfig().jobschedulerId
+			this.jobschedulerUri = AppConfig().jobschedulerUri
+						
 			this.contentTabs = new TabContainer({
 				region: "center",
 				id: "contentTabs",
@@ -61,7 +65,7 @@ define([
 				})
 				
 
-			this.loginController = new LoginController();		
+			this.loginController = new LoginController({'app':this});
 			this.loginDialog = new LoginDialog({controller: this.loginController});
 
 			this.loginDialog.startup();
@@ -123,7 +127,7 @@ define([
 			});	
 			
 			self.treepane.on('selected_order', function( order ) {
-				if (order.parent == "/wf/wf"){
+				if (order.parent == self.wf.job_chain){
 					self.wf.getOrder(order.id, order.name);
 				}
 
@@ -133,7 +137,8 @@ define([
 			this.contentTabs.addChild(this.wf);
 
             domStyle.set(this.overlayNode,'display','none');
-			this.loginDialog.autoAuth('root', 'p0p01234')
+			if (AppConfig().auth['username'] && AppConfig().auth['password'])
+				this.loginDialog.autoAuth(AppConfig().auth['username'], AppConfig().auth['password'])
 		},
 		
 		loadOrder: function( order ){

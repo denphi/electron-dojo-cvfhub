@@ -36,7 +36,9 @@ define([
             lang.mixin(this, kwArgs);
 			this.nested = true;
 			this.tabPosition = "rigth-h";
-			this.job_chain = "/wf/wf";
+			this.instance = "wf_test"
+			this.wf_name = "wf"
+			this.job_chain = "/"+this.instance+"/"+this.wf_name;
 			this.pamformpane = new PAMFORMPane({
 				title: "PAMFORM",
 				style:"margin-left: 130px; border: 1px solid #759dc0 !important",
@@ -73,12 +75,12 @@ define([
 			if (self.app == undefined){
 				self.emit("login_error", {'message':'App undefined'});
 			} else {
+				//"state": "100", 
+				//"endState" : "300",			
 				var data = {
 					"jobschedulerId": self.app.jobschedulerId, 
 					"orders": [{ 					
 						"jobChain": self.job_chain, 
-						"state": "100", 
-						"endState" : "300",
 						"params": [ 
 							{"name" : "modulus", "value" : self.pamformpane.modulus.getValue()},
 							{"name" : "bendingstiffness", "value" : self.pamformpane.bendingstiffness.getValue()},
@@ -86,9 +88,11 @@ define([
 							{"name" : "inlet_temperature", "value" : self.pamrtmpane.inlet_temperature.getValue()},
 							{"name" : "ambient_temperature", "value" : self.pamrtmpane.ambient_temperature.getValue()},
 							{"name" : "inlet_pressure", "value" : self.pamrtmpane.inlet_pressure.getValue()},
+							{"name" : "path", "value" : self.instance},
 						]
 					}] 
 				}
+
 				var header_token = {
 					"x-access-token": self.app.accessToken,
 					"Accept": "application/json",
@@ -100,17 +104,17 @@ define([
 					"method" : "POST",
 					"data" : JSON.stringify(data)
 				}
-				var url = "http://localhost/jobscheduler/joc/api/orders/add"
+				var url = self.app.jobschedulerUri + "/jobscheduler/joc/api/orders/add"
 				request(url, options).then(function(json_return){
 					if (json_return['ok'] == true){
 						setTimeout(lang.hitch(this, function() {
 							self.emit("new_order", {'message':json_return['orders'][0]["orderId"]});
 							self.loadOrders();
-							this.standby.hide()	
+							self.standby.hide()	
 						}), 1000);						
 					} else {
 						self.emit("login_error", {'message':json_return['message']});
-						this.standby.hide()	
+						self.standby.hide()	
 					}
 				}, function(json_return){
 					if (json_return['response']){			
@@ -118,7 +122,7 @@ define([
 					} else {
 						self.emit("login_error", {'message':'Unexpected error'});
 					}
-					this.standby.hide()			
+					self.standby.hide()			
 				});
 			}
 		},
@@ -147,8 +151,9 @@ define([
 					"method" : "POST",
 					"data" : JSON.stringify(data)
 				}
-				var url = "http://localhost/jobscheduler/joc/api/orders/history"
+				var url = self.app.jobschedulerUri + "/jobscheduler/joc/api/orders/history"
 				request(url, options).then(function(json_return){
+					setTimeout(function(){self.loadOrders()},10000);
 					self.emit("orders", {'orders':json_return['history']});
 				}, function(json_return){
 					if (json_return['response']){			
@@ -189,7 +194,7 @@ define([
 					"method" : "POST",
 					"data" : JSON.stringify(data)
 				}
-				var url = "http://localhost/jobscheduler/joc/api/audit_log "
+				var url = self.app.jobschedulerUri + "/jobscheduler/joc/api/audit_log "
 				request(url, options).then(function(json_return){
 					var tab = new ReportPane({
 						'title' : self.job_chain + "(" + order_id + ")",
@@ -241,7 +246,7 @@ define([
 					"method" : "POST",
 					"data" : JSON.stringify(data)
 				}
-				var url = "http://localhost/jobscheduler/joc/api/order/log "
+				var url = self.app.jobschedulerUri + "/jobscheduler/joc/api/order/log "
 				request(url, options).then(function(json_return){
 					report.addLog(json_return);
 				}, function(json_return){
@@ -276,7 +281,7 @@ define([
 					"method" : "POST",
 					"data" : JSON.stringify(data)
 				}
-				var url = "http://localhost/sessions/list_files"
+				var url = self.app.jobschedulerUri + "/sessions/list_files"
 				request(url, options).then(function(json_return){
 					if (json_return){
 						report.addFiles(json_return['files']);
@@ -298,7 +303,7 @@ define([
 									"method" : "POST",
 									"data" : JSON.stringify(data_file)
 								}
-								var url_file = "http://localhost/sessions/get_file";							
+								var url_file = self.app.jobschedulerUri + "/sessions/get_file";							
 								console.log(userChosenPath);							
 								var file_request = request(url_file, options_file);
 								file_request.response.then(function(blob){

@@ -35,9 +35,6 @@ define([
 		loadTree : function( base, data ){
 			this.standby.show();
 			var self = this
-			var children = this.getChildren();
-			if (children.length>0)
-				this.removeChild(children[0])
 			var myStore = new Memory({
 				'data': data,
 				'getChildren': function(object){
@@ -84,7 +81,11 @@ define([
 				} 
 			})
 
+			var children = this.getChildren();
 			this.addChild(tree);
+			if (children.length>0)
+				this.removeChild(children[0])
+			
 			this.resize();
 			this.standby.hide();			
 		}        

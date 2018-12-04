@@ -31,7 +31,7 @@ define([
 				"headers" : header_token,
 				"method" : "POST"
 			}
-			var url = "http://localhost/jobscheduler/joc/api/security/login"
+			var url = self.app.jobschedulerUri + "/jobscheduler/joc/api/security/login";
             var def = new Deferred();
 			request(url, options).then(function(json_return){
 				self.authenticated = false
