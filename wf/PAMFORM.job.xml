@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<job order="yes" stop_on_error="no">
+    <params />
+    <script language="javax.script:JavaScript">
+        <![CDATA[
+			var orderParams = spooler_task.order().params()
+			var modulus = orderParams.value("modulus")
+			var bendingstiffness = orderParams.value("bendingstiffness")
+			var FORM_filename = orderParams.value("FORM_filename")
+			var session = orderParams.value("session")
+		
+		
+			spooler_log.info("orderParam session"  + session)			
+			spooler_log.info("orderParam modulus"  + modulus)
+			spooler_log.info("orderParam bendingstiffness"  + bendingstiffness)
+			spooler_log.info("orderParam FORM_filename"  + FORM_filename)
+        ]]>
+    </script>
+    <run_time />
+</job>

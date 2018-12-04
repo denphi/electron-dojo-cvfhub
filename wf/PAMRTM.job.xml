@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<job order="yes" stop_on_error="no">
+    <params />
+    <script language="javax.script:JavaScript">
+        <![CDATA[
+			var orderParams = spooler_task.order().params()
+			var inlet_temperature = orderParams.value("inlet_temperature")
+			var ambient_temperature = orderParams.value("ambient_temperature")
+			var inlet_pressure = orderParams.value("inlet_pressure")
+			var session = orderParams.value("session")
+		
+
+		
+			spooler_log.info("orderParam session"  + session)
+			spooler_log.info("orderParam inlet_temperature"  + inlet_temperature)
+			spooler_log.info("orderParam ambient_temperature"  + ambient_temperature)
+			spooler_log.info("orderParam inlet_pressure"  + inlet_pressure)
+        ]]>
+    </script>
+    <run_time />
+</job>
